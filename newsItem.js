@@ -27,12 +27,7 @@ var NewsItem = React.createClass({
   },
 
   renderTitle: function() {
-    var title = this.props.title;
-
-    if (!this.props.isExpanded && title.length > 50) {
-      title = title.substr(0, 50) + '…'
-    }
-
+    var title = React.createElement('span', {}, this.props.title);
     return React.createElement('div', {className: 'news-title', onClick: this.handleClick}, title)
   },
 
