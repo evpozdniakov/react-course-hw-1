@@ -4,7 +4,4 @@ var newsData = JSON.parse(newsJSON);
 
 var newsList = React.createElement(NewsList, {newsData: newsData});
 
-window.onload = function() {
-  newsList
-  ReactDOM.render(newsList, document.querySelector('#news-ctnr'));
-}
+ReactDOM.render(newsList, document.querySelector('#news-ctnr'));

@@ -1,0 +1,30 @@
+.news-item {
+  max-width: 640px;
+  padding: 1rem;
+  margin: 1em 0;
+  border: 2px solid #666;
+  border-radius: .5rem;
+  transition: border-color .3s;
+}
+.news-item.collapsed {
+  border-color: transparent;
+}
+.news-title {
+  color: #666;
+  font-size: 1.5em;
+  cursor: pointer;
+  border-color: transparent;
+  display: inline-block;
+  transition: border-color .3s;
+}
+.collapsed .news-title {
+  border-bottom: 2px dashed #666;
+}
+.news-content {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height .3s;
+}
+.collapsed .news-content {
+  max-height: 0px;
+}
