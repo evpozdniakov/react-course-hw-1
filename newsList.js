@@ -23,11 +23,9 @@ var NewsList = React.createClass({
   render: function() {
     var items = this.props.newsData.map(function(newsItem, index) {
       newsItem.index = index;
-      newsItem.key = index;
-      newsItem.toggleShow = this.toggleShow;
       newsItem.isExpanded = index === this.state.expandedItemIndex;
 
-      return React.createElement(NewsItem, newsItem);
+      return React.createElement(NewsItem, {key: newsItem.link, toggleShow: this.toggleShow, newsItem: newsItem});
     }.bind(this))
 
     var props = {
