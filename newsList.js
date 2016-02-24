@@ -23,7 +23,7 @@ var NewsList = React.createClass({
   render: function() {
     var items = this.props.newsData.map(function(newsItem, index) {
       newsItem.index = index;
-      newsItem.key = newsItem.link;
+      newsItem.key = index;
       newsItem.toggleShow = this.toggleShow;
       newsItem.isExpanded = index === this.state.expandedItemIndex;
 

@@ -3,6 +3,7 @@ var NewsItem = React.createClass({
     title: React.PropTypes.string.isRequired,
     published: React.PropTypes.string.isRequired,
     content: React.PropTypes.string.isRequired,
+    comments: React.PropTypes.array.isRequired,
     index: React.PropTypes.number.isRequired,
     toggleShow: React.PropTypes.func.isRequired,
     isExpanded: React.PropTypes.bool.isRequired
@@ -15,10 +16,11 @@ var NewsItem = React.createClass({
   render: function() {
     var className = 'news-item' + (this.props.isExpanded ? '' : ' collapsed')
 
-    return React.createElement('div', {className: className}, [
+    return React.createElement('div', {className: className, key: this.props.key}, [
       this.renderDate(),
       this.renderTitle(),
       this.renderContent(),
+      this.renderComments(),
     ])
   },
 
@@ -33,5 +35,9 @@ var NewsItem = React.createClass({
 
   renderContent: function() {
     return React.createElement('div', {className: 'news-content'}, this.props.content)
+  },
+
+  renderComments: function() {
+    return React.createElement(NewsComments, {comments: this.props.comments})
   }
 })

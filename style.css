@@ -32,3 +32,8 @@
 .news-content {
   padding-top: .5rem;
 }
+.news-comments {
+  display: inline-block;
+  margin-top: .5em;
+  border-bottom: 1px dashed #666;
+}
