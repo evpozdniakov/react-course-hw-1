@@ -1,7 +1,7 @@
 var NewsItem = React.createClass({
   propTypes: {
     newsItem: React.PropTypes.shape({
-      index: React.PropTypes.number.isRequired,
+      id: React.PropTypes.number.isRequired,
       title: React.PropTypes.string.isRequired,
       published: React.PropTypes.string.isRequired,
       content: React.PropTypes.string.isRequired,
@@ -14,7 +14,7 @@ var NewsItem = React.createClass({
   },
 
   handleTitleClick: function(ev) {
-    this.props.toggleNewsContent(ev, {index: this.props.newsItem.index})
+    this.props.toggleNewsContent(ev, {id: this.props.newsItem.id})
   },
 
   handleCommentsClick: function() {

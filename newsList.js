@@ -7,17 +7,17 @@ var NewsList = React.createClass({
 
   getInitialState: function() {
     return {
-      expandedItemIndex: -1,
+      expandedItemId: -1,
       commentsShown: false,
     }
   },
 
   toggleNewsContent: function(ev, data) {
-    if (this.state.expandedItemIndex === data.index) {
-      this.setState({expandedItemIndex: -1})
+    if (this.state.expandedItemId === data.id) {
+      this.setState({expandedItemId: -1})
     }
     else {
-      this.setState({expandedItemIndex: data.index})
+      this.setState({expandedItemId: data.id})
     }
 
     this.setState({commentsShown: false})
@@ -28,9 +28,8 @@ var NewsList = React.createClass({
   },
 
   render: function() {
-    var items = this.props.newsData.map(function(newsItem, index) {
-      newsItem.index = index;
-      newsItem.isExpanded = index === this.state.expandedItemIndex;
+    var items = this.props.newsData.map(function(newsItem) {
+      newsItem.isExpanded = newsItem.id === this.state.expandedItemId;
       newsItem.commentsShown = newsItem.isExpanded && this.state.commentsShown; 
 
       var props = {
