@@ -31,7 +31,7 @@ var NewsItem = React.createClass({
       className += ' with-comments'
     }
 
-    return React.createElement('div', {className: className, key: this.props.newsItem.index},
+    return React.createElement('div', {className: className},
       this.renderDate(),
       this.renderTitle(),
       this.renderContent(),

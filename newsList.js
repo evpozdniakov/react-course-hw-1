@@ -1,7 +1,7 @@
 var NewsList = React.createClass({
   propTypes: {
     newsData: React.PropTypes.arrayOf(React.PropTypes.shape({
-      link: React.PropTypes.string.isRequired
+      id: React.PropTypes.number.isRequired
     }))
   },
 
@@ -34,7 +34,7 @@ var NewsList = React.createClass({
       newsItem.commentsShown = newsItem.isExpanded && this.state.commentsShown; 
 
       var props = {
-        key: newsItem.link,
+        key: newsItem.id,
         toggleNewsContent: this.toggleNewsContent,
         toggleNewsComments: this.toggleNewsComments,
         newsItem: newsItem,

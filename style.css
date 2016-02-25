@@ -1,21 +1,21 @@
 /* animation */
 .news-item {
   overflow: hidden;
-  max-height: 300px;
+  max-height: 400px;
   transition: max-height .3s
 }
 .news-item.collapsed {
   max-height: 2.9rem;
 }
 .news-item.with-comments {
-  max-height: 900px;
+  max-height: 1400px;
 }
 .comment-list {
   max-height: 0;
   transition: max-height .3s
 }
 .with-comments .comment-list {
-  max-height: 600px;
+  max-height: 1000px;
 }
 
 /* news list */
@@ -57,6 +57,7 @@
 /* news comment */
 .news-comment {
   margin-top: .5rem;
+  font-size: .8rem;
 }
 
 .news-comment:first-child {
@@ -65,5 +66,5 @@
 
 .comment-author {
   font-style: italic;
+  font-weight: bold;
 }
-

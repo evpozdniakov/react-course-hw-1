@@ -1,7 +1,9 @@
 var NewsComments = React.createClass({
   propTypes: {
     toggleNewsComments: React.PropTypes.func.isRequired,
-    comments: React.PropTypes.array.isRequired
+    comments: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired
+    })).isRequired
   },
 
   toggleComments: function() {
@@ -33,11 +35,10 @@ var NewsComments = React.createClass({
   },
 
   renderList: function() {
-    var commentElms = this.props.comments.map(function(comment, index) {
+    var commentElms = this.props.comments.map(function(comment) {
       var props = {
-        key: index,
-        author: comment.author,
-        text: comment.text
+        key: comment.id,
+        comment: comment
       }
 
       return React.createElement(NewsComment, props)
