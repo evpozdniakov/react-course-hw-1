@@ -8,24 +8,39 @@ var NewsList = React.createClass({
   getInitialState: function() {
     return {
       expandedItemIndex: -1,
+      commentsShown: false,
     }
   },
 
-  toggleShow: function(ev, data) {
+  toggleNewsContent: function(ev, data) {
     if (this.state.expandedItemIndex === data.index) {
       this.setState({expandedItemIndex: -1})
     }
     else {
       this.setState({expandedItemIndex: data.index})
     }
+
+    this.setState({commentsShown: false})
+  },
+
+  toggleNewsComments: function() {
+    this.setState({commentsShown: !this.state.commentsShown})
   },
 
   render: function() {
     var items = this.props.newsData.map(function(newsItem, index) {
       newsItem.index = index;
       newsItem.isExpanded = index === this.state.expandedItemIndex;
+      newsItem.commentsShown = newsItem.isExpanded && this.state.commentsShown; 
 
-      return React.createElement(NewsItem, {key: newsItem.link, toggleShow: this.toggleShow, newsItem: newsItem});
+      var props = {
+        key: newsItem.link,
+        toggleNewsContent: this.toggleNewsContent,
+        toggleNewsComments: this.toggleNewsComments,
+        newsItem: newsItem,
+      }
+
+      return React.createElement(NewsItem, props);
     }.bind(this))
 
     var props = {

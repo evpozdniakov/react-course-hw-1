@@ -6,17 +6,30 @@ var NewsItem = React.createClass({
       published: React.PropTypes.string.isRequired,
       content: React.PropTypes.string.isRequired,
       comments: React.PropTypes.array.isRequired,
-      isExpanded: React.PropTypes.bool.isRequired
+      isExpanded: React.PropTypes.bool.isRequired,
+      commentsShown: React.PropTypes.bool.isRequired
     }).isRequired,
-    toggleShow: React.PropTypes.func.isRequired
+    toggleNewsContent: React.PropTypes.func.isRequired,
+    toggleNewsComments: React.PropTypes.func.isRequired,
   },
 
-  handleClick: function(ev) {
-    this.props.toggleShow(ev, {index: this.props.newsItem.index})
+  handleTitleClick: function(ev) {
+    this.props.toggleNewsContent(ev, {index: this.props.newsItem.index})
+  },
+
+  handleCommentsClick: function() {
+    this.props.toggleNewsComments()
   },
 
   render: function() {
-    var className = 'news-item' + (this.props.newsItem.isExpanded ? '' : ' collapsed')
+    var className = 'news-item';
+
+    if (!this.props.newsItem.isExpanded) {
+      className += ' collapsed'
+    }
+    else if (this.props.newsItem.commentsShown) {
+      className += ' with-comments'
+    }
 
     return React.createElement('div', {className: className, key: this.props.newsItem.index},
       this.renderDate(),
@@ -32,7 +45,12 @@ var NewsItem = React.createClass({
 
   renderTitle: function() {
     var title = React.createElement('span', {}, this.props.newsItem.title);
-    return React.createElement('div', {className: 'news-title', onClick: this.handleClick}, title)
+    var props = {
+      className: 'news-title',
+      onClick: this.handleTitleClick
+    }
+
+    return React.createElement('div', props, title)
   },
 
   renderContent: function() {
@@ -40,6 +58,10 @@ var NewsItem = React.createClass({
   },
 
   renderComments: function() {
-    return React.createElement(NewsComments, {comments: this.props.newsItem.comments})
+    var props = {
+      comments: this.props.newsItem.comments,
+      toggleNewsComments: this.handleCommentsClick
+    }
+    return React.createElement(NewsComments, props)
   }
 })
